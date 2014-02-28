@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+# define maximo 40
+ int main()
+{
+  FILE *F;
+  float v[maximo];
+  int i,j;
+  int m;
+  float I;
+  float h;
+  float temp;
+  float s;
+  int t;
+  float ans;
+  char nomearquivo[30];
+  printf("Digite o nome do arquivo");
+  scanf("%s",nomearquivo);
+  F=fopen("nomearquivo.txt","r");
+  if(F==NULL)
+   {
+       fprintf(stderr,"Impossível abrir o arquivo");
+       return(1);
+
+   }
+   for(i=0;i<maximo;i++)
+   {
+       fscanf(F,"%f",&v);
+       if(feof(F))
+
+       {
+           break;
+       }
+   }
+   j=i;
+   fclose(F);
+
+   for (i = 0; i < j; i++){
+printf("vet[%d] = %d\n", i, v);
+
+
+}
+m=v[0];
+temp=v[1]+v[j-2];
+h=temp/m;
+s=3 * (h/8) ;
+ for(t=1;t<j;t++)
+{  if (t==1|| t==j-2)
+   {
+      ans=ans+v[t+1];
+   }
+   if (t%3==0)
+   {
+       ans=ans+3 * v[t+1];
+   }
+    if( t%3 != 0)
+    {
+
+       ans=ans+ 2 * v[t+1];
+    }
+}
+ I= s* ans;
+ printf("O valor da integral e %f ",I);
+return 0;
+}
